@@ -1,0 +1,16 @@
+asgiref==3.11.1
+certifi==2026.1.4
+distlib==0.4.0
+Django==6.0.2
+django-debug-toolbar==6.2.0
+et_xmlfile==2.0.0
+filelock==3.24.3
+mysqlclient==2.2.8
+openpyxl==3.1.5
+packaging==26.0
+pipenv==2026.0.3
+platformdirs==4.9.2
+setuptools==82.0.0
+sqlparse==0.5.5
+tzdata==2025.3
+virtualenv==20.39.0
