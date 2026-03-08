@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Todo Dashboard</h2>
+
+    <a href="{% url 'logout' %}">Logout</a>
+
+    <hr>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="description" placeholder="Description"></textarea>
+        <input type="date" name="due_date" required>
+
+        <select name="priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <button type="submit">Add Task</button>
+    </form>
+
+    <hr>
+
+    {% for task in tasks %}
+        <div class="task {% if task.completed %}completed{% endif %}">
+            <h3>{{ task.title }}</h3>
+            <p>{{ task.description }}</p>
+            <p>Due: {{ task.due_date }}</p>
+            <p>Priority: {{ task.priority }}</p>
+
+            {% if task.completed %}
+                <p>Completed ✅</p>
+            {% else %}
+                <a href="{% url 'complete_task' task.id %}">Mark Complete</a>
+            {% endif %}
+
+            |
+            <a href="{% url 'delete_task' task.id %}">Delete</a>
+        </div>
+    {% empty %}
+        <p>No tasks yet.</p>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
